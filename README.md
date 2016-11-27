@@ -25,9 +25,9 @@ err = d.Query(&res, "show files in dfs")
 
 ## TODO
 
-- [X] Queries
-- [] Profiles
-- [] Storage plugins
-- [] Stats
-- [] Options
-- [] Test and coverage reports
+- [x] Queries
+- [ ] Profiles
+- [ ] Storage plugins
+- [ ] Stats
+- [ ] Options
+- [ ] Test and coverage reports
