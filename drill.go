@@ -14,7 +14,7 @@ type Drillbit struct {
 }
 
 // NewDrill connects to a given Drillbit by its REST API
-func NewDrill(endpoint string) (*Drillbit, error) {
+func NewDrillbit(endpoint string) (*Drillbit, error) {
 	d := Drillbit{
 		endpoint: endpoint,
 	}

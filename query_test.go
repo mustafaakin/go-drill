@@ -8,7 +8,7 @@ import (
 )
 
 func TestDrillbit_RawQuery(t *testing.T) {
-	d, err := NewDrill("http://172.16.3.17:8047")
+	d, err := NewDrillbit("http://172.16.3.17:8047")
 	assert.NoError(t, err)
 	assert.NotNil(t, d)
 
@@ -22,7 +22,7 @@ func TestDrillbit_RawQuery(t *testing.T) {
 }
 
 func TestDrillbit_Query(t *testing.T) {
-	d, err := NewDrill("http://172.16.3.17:8047")
+	d, err := NewDrillbit("http://172.16.3.17:8047")
 	assert.NoError(t, err)
 	assert.NotNil(t, d)
 

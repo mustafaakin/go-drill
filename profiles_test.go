@@ -8,7 +8,7 @@ import (
 )
 
 func TestDrillbit_Profiles(t *testing.T) {
-	d, err := NewDrill("http://172.16.3.17:8047")
+	d, err := NewDrillbit("http://172.16.3.17:8047")
 	assert.NoError(t, err)
 	assert.NotNil(t, d)
 
