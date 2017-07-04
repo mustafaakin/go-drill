@@ -1,7 +1,7 @@
 # go-drill
 Go client for Apache Drill that utilizes REST API
 
-## Query Example
+## Query Example
 
 ```go
 d, err := NewDrillbit("http://localhost:8047")
@@ -23,11 +23,11 @@ res := make([]fileQuery, 0)
 err = d.Query(&res, "show files in dfs")
 ```
 
-## TODO
+## TODO
 
 - [x] Queries
-- [ ] Profiles
-- [ ] Storage plugins
+- [x] Profiles
+- [x] Storage plugins
 - [ ] Stats
 - [ ] Options
 - [ ] Test and coverage reports
