@@ -28,16 +28,27 @@ func NewDrillFromZK(zkpath string) (*Drillbit, error) {
 	return nil, nil
 }
 
-func (d *Drillbit) request(urlPath string, body interface{}, resp interface{}) error {
+func (d *Drillbit) request(urlPath string, method string, body interface{}, resp interface{}) error {
 	path := d.endpoint + urlPath
 	var res *http.Response
 	var err error
-	if body != nil{
-		b := new(bytes.Buffer)
-		json.NewEncoder(b).Encode(body)
-		res, err = http.Post(path, "application/json", b)
-	} else {
+
+	switch method {
+	case "GET":
 		res, err = http.Get(path)
+	case "POST":
+		if body != nil {
+			b := new(bytes.Buffer)
+			json.NewEncoder(b).Encode(body)
+			res, err = http.Post(path, "application/json", b)
+		}
+	case "DELETE":
+		req, err := http.NewRequest("DELETE", path, nil)
+		if err != nil {
+			return err
+		}
+		client := &http.Client{}
+		res, err = client.Do(req)
 	}
 
 	if err != nil {
@@ -64,10 +75,15 @@ func (d *Drillbit) request(urlPath string, body interface{}, resp interface{}) e
 
 // get makes a GET request
 func (d *Drillbit) get(urlPath string, resp interface{}) (error) {
-	return d.request(urlPath, nil, &resp)
+	return d.request(urlPath, "GET", nil, &resp)
 }
 
 // post makes a POST request
 func (d *Drillbit) post(urlPath string, body interface{}, resp interface{}) error {
-	return d.request(urlPath, body, &resp)
+	return d.request(urlPath, "POST", body, &resp)
+}
+
+// delete makes a DELETE request
+func (d *Drillbit) delete(urlPath string, resp interface{}) error {
+	return d.request(urlPath, "DELETE", nil, &resp)
 }
